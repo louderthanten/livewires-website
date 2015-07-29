@@ -13,9 +13,10 @@ button,
 input[type="submit"],
 .button,
 a.button {
+  @include font-size(18,$line);
   position:relative;
   display:inline-block;
-  padding:rem($line/4 $line/2);
+  padding:rem($line/4 $line);
   border:none;
   border-radius: $radius;
   outline:none;
@@ -23,6 +24,7 @@ a.button {
   text-decoration: none;
   cursor:pointer;
   font-family: $sans;
+  font-weight:$medium;
 
   &:link,
   &:visited {

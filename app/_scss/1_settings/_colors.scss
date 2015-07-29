@@ -2,12 +2,101 @@
 //   Default Colours
 //   ========================================================================== */
 
-$background: #FFFFFF;
-$dark-background: #DDDDDD;
-$text: #333333;
-$mid-text: #666666;
-$light-text: #AAAAAA;
-$red: #d13731;
-$blue: #44b3e1;
+// Base colours
+$white: hsl(48, 100%, 99%);
+$cream: hsl(60, 38%, 97%);
+$light-grey: hsl(210, 3%, 70%);
+$grey: hsl(220, 1%, 43%);
+$dark-grey: hsl(0, 0%, 20%);
+$black: hsl(345, 6%, 13%);
 
-$accent: $red; //Primary accent color
+// Primary brand colours
+$light-red: hsl(11, 100%, 61%);
+$dark-red: hsl(5, 67%, 46%);
+$red: $light-red;
+
+// Secondary brand colours
+$light-blue: hsl(197, 100%, 44%);
+$dark-blue: hsl(212, 100%, 36%);
+$blue:$light-blue;
+
+// Utility colours
+$yellow: hsl(38, 96%, 61%);
+$green: hsl(126, 37%, 47%);
+
+$background: $white;
+$dark-background: $cream;
+$text: $black;
+$mid-text: $dark-grey;
+$light-text: $grey;
+
+$accent: $light-red; //Primary accent color
+
+// Color shades
+$palettes: (
+  grey: (
+    core: hsl(60, 1%, 53%),
+    10: $white,
+    20: $cream,
+    30: hsl(60, 6%, 86%),
+    40: hsl(60, 3%, 75%),
+    50: hsl(60, 2%, 64%),
+    60: hsl(60, 1%, 53%),
+    70: hsl(60, 0%, 42%),
+    80: hsl(60, 1%, 31%),
+    90: $dark-grey,
+    100: $black
+  ),
+  red: (
+    core: $light-red,
+    10: mix($light-red, $white, 20),
+    20: mix($light-red, $white, 40),
+    30: mix($light-red, $white, 60),
+    40: mix($light-red, $white, 80),
+    50: $light-red,
+    60: $dark-red,
+    70: mix($dark-red, $black, 80),
+    80: mix($dark-red, $black, 60),
+    90: mix($dark-red, $black, 40),
+    100: mix($dark-red, $black, 20)
+  ),
+  blue: (
+    core: $light-blue,
+    10: mix($light-blue, $white, 20),
+    20: mix($light-blue, $white, 40),
+    30: mix($light-blue, $white, 60),
+    40: mix($light-blue, $white, 80),
+    50: $light-blue,
+    60: $dark-blue,
+    70: mix($dark-blue, $black, 80),
+    80: mix($dark-blue, $black, 60),
+    90: mix($dark-blue, $black, 40),
+    100: mix($dark-blue, $black, 20)
+  ),
+  green: (
+    core: $green,
+    10: mix($green, $white, 20),
+    20: mix($green, $white, 40),
+    30: mix($green, $white, 60),
+    40: mix($green, $white, 80),
+    50: $green,
+    60: mix($green, $black, 80),
+    70: mix($green, $black, 60),
+    80: mix($green, $black, 40),
+    90: mix($green, $black, 20),
+    100: mix($green, $black, 10)
+  ),
+  yellow: (
+    core: $green,
+    10: mix($yellow, white, 20),
+    20: mix($yellow, white, 40),
+    30: mix($yellow, white, 60),
+    40: mix($yellow, white, 80),
+    50: $yellow,
+    60: mix($yellow, black, 80),
+    70: mix($yellow, black, 60),
+    80: mix($yellow, black, 40),
+    90: mix($yellow, black, 20),
+    100: mix($yellow, black, 10)
+  ),
+);
