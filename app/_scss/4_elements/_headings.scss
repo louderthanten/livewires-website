@@ -9,6 +9,7 @@ h1,
   @include font-size(60, $line*2.5);
   font-family: $serif;
   font-weight:$extrabold;
+  margin-top:rem($line);
   margin-bottom:rem($line*3);
 
   // Use for header sub-elements
