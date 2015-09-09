@@ -43,7 +43,7 @@
 //
 // eg) class="l5" would render 5 lines of text placeholder images
 @for $i from 1 through 100 {
-  .l#{$i} { height:$line* $i * 1px; background: url('../img/livewires/text.png'); }
+  .l#{$i} { height:$line* $i * 1px; background: url('/img/livewires/text.png'); }
   .l#{$i} > p { visibility: hidden; }
 }
 

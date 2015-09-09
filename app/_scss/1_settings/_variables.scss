@@ -6,8 +6,8 @@
 ///* =============================================================================
 //   Base sizing
 //   ========================================================================== */
-$base: 20; // Set the html base font size (in px). We recommend keep this at 16.
-$line: 28; // Set the baseline grid (in px) Also determines gutter width.
+$base: 16; // Set the html base font size (in px). We recommend keep this at 16.
+$line: 24; // Set the baseline grid (in px) Also determines gutter width.
 
 
 ///* =============================================================================
@@ -17,7 +17,9 @@ $line: 28; // Set the baseline grid (in px) Also determines gutter width.
 $rule: 1px solid $light-text;
 $hairline: 1px solid $dark-background;
 $accentline: 1px solid $accent;
-$whiteline: 1px solid $background;
+$lightline: 1px solid $background;
+$whiteline: 1px solid white;
+$blackline: 1px solid black;
 
 // Default border radius
 $radius: 3px;
@@ -27,9 +29,9 @@ $radius: 3px;
 //   Font Stacks
 //   ========================================================================== */
 
-$serif: "Tiempos Text",Georgia, serif;
-$sans: "Calibre","Neue Haas Unica Pro","Helvetica Neue", sans-serif;
-$mono: monospace;
+$serif: 'Source Serif Pro',Georgia, serif;
+$sans: 'TrasandinaBook',sans-serif;
+$mono: 'Roboto Mono',monospace;
 
 
 ///* =============================================================================
@@ -88,6 +90,8 @@ $xlarge: "only screen and (min-width : #{$screenXlarge})";
 
 // Primary Grid
 //=============\\
+//Two Column Grid
+$c2: 100% / 2;
 //Three Column Grid
 $c3: 100% / 3;
 //Four Column Grid

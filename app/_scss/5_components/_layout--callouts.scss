@@ -14,7 +14,6 @@
 .callout {
   @extend %group;
   margin-bottom:rem($line);
-  font-family:$sans;
 
   //Remove margins from figure if it's outside of the .content area. Locks image and content together.
   > figure {

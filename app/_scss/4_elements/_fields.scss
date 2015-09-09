@@ -15,7 +15,7 @@ textarea {
   border: $rule;
   border-radius: $radius;
   font-family:$sans;
-  padding:rem($line/2);
+  padding: rem($line/2);
 
   &:active,
   &:focus {
@@ -41,9 +41,10 @@ select {
 
 }
 
-
-.search-input, {
+input[type=search],
+.search-input {
   overflow:hidden;
+  box-sizing:border-box;
 
   &:focus,
   &:active {

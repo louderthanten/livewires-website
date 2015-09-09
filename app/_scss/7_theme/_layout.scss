@@ -8,8 +8,14 @@ body {
 
 // Reverse the colours
 .reverse {
-  //@include font-smoothing(on);
+  @include font-smoothing(off);
   background:$text;
+  color:$background;
+}
+
+.dark {
+  @include font-smoothing(off);
+  background:$mid-text;
   color:$background;
 }
 

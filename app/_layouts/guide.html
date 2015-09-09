@@ -3,23 +3,27 @@
   <head>
     <!-- Include meta tags -->
     {% include head.html %}
-    <link href="/css/app.css" rel="stylesheet" media="all" />
-    <link href="/css/guide.css" rel="stylesheet" media="all" />
+
+  <!-- build:css({app,.tmp}) /css/guide.css -->
+  <link href="/css/guide.css" rel="stylesheet" media="all" />
+  <!-- endbuild -->
+
   </head>
-  <body class="offcanvas--push pg-{{ page.slug }}">
+  <body class="pg-{{ page.slug }}">
 
     <!-- Header section -->
     {% include header-guide.html %}
 
     <!-- Content block, child page inject content -->
-    <main class="main" id="main" role="main">
-    {{ content }}
-    </main>
+    <main class="main offcanvas--squish offcanvas--squish-left" id="main" role="main">
+      {{ content }}
 
-    <!-- Footer section -->
-    {% include footer.html %}
+      <!-- Footer section -->
+      {% include footer.html %}
+    </main>
 
     <!-- JS Includes -->
     {% include foot.html %}
+    
   </body>
 </html>

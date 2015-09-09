@@ -1,1 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 270" enable-background="new 0 0 414 270"><g fill="#3A3A3C"><path d="M180 144v90h18v-36l21 36h18l-21-36h9l9-8.99v-36.02l-9-8.99h-45zm36 36h-18v-18h18v18zM180 144v90h18v-36l21 36h18l-21-36h9l9-8.99v-36.02l-9-8.99h-45zm36 36h-18v-18h18v18zM144 144h18v90h-18zM180 36v54l-9 18-9-18v-54h-18v54l18 36h18l18-36v-54zM108 36h18v90h-18zM306 162v-18h-54v90h54v-18h-36v-18h36v-18h-36v-18zM54 108v-72h-18v90h54v-18zM270 54v-18h-54v90h54v-18h-36v-18h36v-18h-36v-18zM378 162v-18h-45l-9 9v36l9 9h27v18h-36v18h45l9-9v-36l-9-9h-27v-18zM108 144v72h-18v-72h-18v72h-18v-72h-18v90h81l9-9v-81zM0 0v270h414v-270h-414zm18 252v-234h378v234h-378z"/></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1000px" height="652px" viewBox="0 0 1000 652" style="enable-background:new 0 0 1000 652;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#222223;}
+</style>
+<rect x="11" y="10" class="st0" width="972" height="633"/>
+<g>
+	<path class="st1" d="M435,348v217h43v-86.7l51,86.7h43.5l-50.7-87h21.7l21.5-21.5v-65.2v-21.8L543.5,348H435z M522,435h-44v-44h44
+		V435z"/>
+	<path class="st1" d="M435,348v217h43v-86.7l51,86.7h43.5l-50.7-87h21.7l21.5-21.5v-65.2v-21.8L543.5,348H435z M522,435h-44v-44h44
+		V435z"/>
+	<rect x="348" y="348" class="st1" width="43" height="217"/>
+	<polygon class="st1" points="435,87 435,217.4 413,260.9 391,217.4 391,87 348,87 348,217.4 391.3,304 434.8,304 478,217.4 478,87 
+			"/>
+	<rect x="261" y="87" class="st1" width="43" height="217"/>
+	<polygon class="st1" points="739,391 739,348 609,348 609,565 739,565 739,522 652,522 652,478 739,478 739,435 652,435 652,391 	
+		"/>
+	<polygon class="st1" points="130,261 130,87 87,87 87,304 217,304 217,261 	"/>
+	<polygon class="st1" points="652,130 652,87 522,87 522,304 652,304 652,261 565,261 565,217 652,217 652,174 565,174 565,130 	"/>
+	<polygon class="st1" points="913,391 913,348 804.3,348 783,369.6 783,456.5 804.3,478 870,478 870,522 783,522 783,565 891.3,565 
+		913,543.5 913,456.5 891.3,435 826,435 826,391 	"/>
+	<polygon class="st1" points="261,348 261,522 217,522 217,348 174,348 174,522 130,522 130,348 87,348 87,565 282.6,565 304,543.5 
+		304,348 	"/>
+	<path class="st1" d="M0,0v652h1000V0H0z M43,609V43h914v566H43z"/>
+</g>
+</svg>

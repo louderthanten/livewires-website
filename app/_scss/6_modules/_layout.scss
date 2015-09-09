@@ -32,6 +32,10 @@
     width:$c3*1; // Creates objects that are 1/3 the width of its parent
     float:left;
   }
+  .center-content {
+    margin-left:$c4;
+    width:$c4*2;
+  }
 }
 
 @media only screen and (min-width: $screenMedium) {
