@@ -6,28 +6,26 @@
 
 h1,
 .h1 {
-  
+  font-size:3em;
   font-family: $serif;
   font-weight:$bold;
-  font-size:7.5em;
   line-height:1.1;
-  //letter-spacing:-0.025em;
-  //text-transform:uppercase;
   margin-bottom:0.5em;
 
-  // Use for header sub-elements
   span,
   small {
     font-size: 0.5em;
   }
+  @media #{$small} {
+    font-size:5em;
+  } 
 }
 h2,
 .h2 {
-  //font-family: $serif;
   font-weight:$regular;
-  font-size:2em;
+  font-size:1.8em;
   line-height:1.2;
-  margin-bottom:1em;
+  margin-bottom:rem($line/2);
 
   span,
   small {
@@ -38,6 +36,9 @@ h2,
 h3,
 .h3 {
   font-family: $sans;
+  font-size:1.2em;
+  line-height:1.2;
+  margin-bottom:rem($line/4);
 
   span,
   small {
@@ -55,4 +56,10 @@ h5,
 h6,
 .h6 {
   font-family: $sans;
+}
+
+p + {
+  h3 {
+    margin-top:rem($line);
+  }
 }

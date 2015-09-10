@@ -4,6 +4,11 @@ ul,
 ol,
 dl {
   margin-bottom:rem($line/2);
+  padding-left:rem($line);
+
+  @media #{$small} {
+    padding-left:0;
+  }
 
   ul,
   ol {

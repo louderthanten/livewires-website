@@ -23,7 +23,7 @@
 .row {
   @extend %group; // Call in a clearfix style
   position:relative;
-  padding: rem($line) $margin; //Creates margins around row content
+  padding: rem($line/2); //Creates margins around row content
 }
 
 // remove vertical padding on rows if row--tight class is present
@@ -41,7 +41,7 @@
 @media only screen and (min-width: $screenSmall) {
   .row,
   .row--mobile-full { // Bring edge-to-edge mobile views inline with the rest of the layout
-    padding: rem($line*2) $margin; // Increase vertical padding for more space
+    padding: rem($line*2); // Increase vertical padding for more space
 
     // Add gutters to a row's immediate children unless they have a .collapse class.
     > *:not(.collapse) {
@@ -56,14 +56,14 @@
 }
 
 @media only screen and (min-width: $screenMedium) {
-  .row {
-    padding-left:$margin*2;
-    padding-right:$margin*2;
-  }
+
 }
 
 @media only screen and (min-width: $screenLarge) {
-
+  .row {
+    padding-left:$margin;
+    padding-right:$margin;
+  }
 }
 @media only screen and (min-width: $screenXlarge) {
 

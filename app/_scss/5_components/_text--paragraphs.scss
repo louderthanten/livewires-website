@@ -1,5 +1,6 @@
 .lead {
   @include font-size(18, $line); // using the $line variable makes it easy to stick to a baseline grid.
+  margin-bottom:rem($line/2);
 }
 
 // Fancy ampersands

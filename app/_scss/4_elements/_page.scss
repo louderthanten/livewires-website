@@ -19,8 +19,8 @@ body {
   @include font-size; 
 }
 
-@media only screen and (min-width: $screenMedium) {
+@media only screen and (min-width: $screenSmall) {
   html {
-    font-size: 107.5%; // You can proportionally resize your entire layout with this line if you stick to rem units everywhere.
+    font-size: 110%; // You can proportionally resize your entire layout with this line if you stick to rem units everywhere.
   }
 }

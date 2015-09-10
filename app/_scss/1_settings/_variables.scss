@@ -6,8 +6,8 @@
 ///* =============================================================================
 //   Base sizing
 //   ========================================================================== */
-$base: 16; // Set the html base font size (in px). We recommend keep this at 16.
-$line: 24; // Set the baseline grid (in px) Also determines gutter width.
+$base: 20; // Set the html base font size (in px). We recommend keep this at 16.
+$line: 28; // Set the baseline grid (in px) Also determines gutter width.
 
 
 ///* =============================================================================
@@ -30,8 +30,8 @@ $radius: 3px;
 //   ========================================================================== */
 
 $serif: 'Source Serif Pro',Georgia, serif;
-$sans: 'TrasandinaBook',sans-serif;
-$mono: 'Roboto Mono',monospace;
+$sans: 'TrasandinaWeb','Helvetica Neue',sans-serif;
+$mono: 'Source Code Pro',monospace;
 
 
 ///* =============================================================================
