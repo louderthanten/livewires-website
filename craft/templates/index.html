@@ -1,0 +1,25 @@
+{% extends "_layouts/default.html" %}
+{% block page %}
+{% cache unless craft.config.devMode or craft.request.isLivePreview %}
+
+{% if entry.artDirection|length %}
+{% set art = true %}
+{% else %}
+{% set art = '' %}
+{% endif %}
+
+<section{% if art %} class="page page--homepage art--homepage"{% endif %}>
+  {% include '_modules/hero' with { art:art } %}
+  <section{% if art %} class="page--homepage__content"{% endif %}>
+    {% endcache %}
+
+    {% block content %}
+    {% cache unless craft.config.devMode or craft.request.isLivePreview %}
+    {% include '_content' %}
+    {% endcache %}
+    {% endblock %}
+
+
+  </section>
+</section>
+{% endblock %}

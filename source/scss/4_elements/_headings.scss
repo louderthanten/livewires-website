@@ -1,0 +1,41 @@
+// HEADINGS
+//
+// Modular scales are your friend, my friend. Use them to set your heading sizes:
+// http://modularscale.com  |  https://vimeo.com/17079380
+
+
+h1,
+.h1 {
+
+  // Use for header sub-elements
+  span,
+  small {
+    font-size: 0.5em;
+  }
+}
+h2,
+.h2 {
+
+  span,
+  small {
+    font-size: 0.5em;
+  }
+
+}
+h3,
+.h3 {
+
+  span,
+  small {
+    font-size: 0.5em;
+  }
+}
+h4,
+.h4 {
+}
+h5,
+.h5 {
+}
+h6,
+.h6 {
+}

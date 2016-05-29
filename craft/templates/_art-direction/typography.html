@@ -1,0 +1,43 @@
+{% if block.hidePrimaryHeading %}
+.headline--{{ entry.slug }} { opacity:0; }
+{% endif %}
+{% if block.primaryHeadingFont %}
+.art--{{ entry.slug }} .headline {
+  font-family: {{ block.primaryHeadingFont|raw }};
+}
+{% endif %}
+{% if block.primaryHeadingWeight %}
+.headline--{{ entry.slug }} {
+  font-weight: {{ block.primaryHeadingWeight }};
+}
+{% endif %}
+.headline--{{ entry.slug }} {
+  {% if block.primaryHeadingItalics ==1 %}
+  font-style: italic;
+  {% else %}
+  font-style: normal;
+  {% endif %}
+}
+{% if block.primaryHeadingUppercase == 1 %}
+.headline--{{ entry.slug }} {
+  text-transform: uppercase;
+}
+{% else %}
+.headline--{{ entry.slug }} {
+  text-transform: none;
+}
+{% endif %}
+{% if block.primaryHeadingSize %}
+.headline--{{ entry.slug }} {
+  {% if block.primaryHeadingUppercase == 1 %}
+  line-height:0.9;
+  {% else %}
+  line-height: 1.125;
+  {% endif %}
+}
+@media only screen and (min-width: 64em) {
+  .headline--{{ entry.slug }} {
+    font-size: {{ block.primaryHeadingSize }};
+  }
+}
+{% endif %}

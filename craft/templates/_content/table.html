@@ -1,0 +1,18 @@
+<table class="table--{{ block.tableType }} {% include '_components/position.html' %}">
+  <thead>
+    <tr>
+      {% for col in block.table.columns %}
+      <th style="text-align:{{ col.align }}; width:{{ col.width }};">{{ col.heading }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in block.table.rows %}
+    <tr>
+    {% for cell in row %}
+      <td style="text-align:{{ block.table.columns[loop.index0].align }};">{{ cell|md }}</td>
+    {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

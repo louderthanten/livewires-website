@@ -1,0 +1,32 @@
+html,
+body {
+  position: relative;
+}
+
+html {
+  min-height: 100%;
+  overflow-y: scroll;
+  font-family: $sans;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+}
+
+body {
+  @include font-size;
+  background:$background;
+  color:$text;
+}
+
+* {
+  @include selected($background, $accent);
+}
+
+
+@media only screen and (min-width: $screenMedium) {
+  html {
+    font-size: 107.5%; // You can proportionally resize your entire layout with this line if you stick to rem units everywhere.
+  }
+}

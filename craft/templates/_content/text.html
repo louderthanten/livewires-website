@@ -1,0 +1,7 @@
+<div class="content {% include '_components/position.html' %}" id="section-{{ block.id }}">
+  {% if block.markdown == 1 %}
+  {{ block.text|md|typogrify }}
+  {% else %}
+  {{ block.text|dash|initial_quotes|smartypants }}
+  {% endif %}
+</div>

@@ -1,0 +1,8 @@
+{% if block.imageSection == 'header' %}
+.page--{{ entry.slug }}__hero {
+{% elseif block.imageSection== 'body' %}
+.page--{{ entry.slug }}__content {
+{% elseif block.imageSection== 'page' %}
+.teaser--{{ entry.slug }},
+.page--{{ entry.slug }} {
+{% endif %}{% set assets = block.backgroundImage %}{% include '_components/background-image' %}}
