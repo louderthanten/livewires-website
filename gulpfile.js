@@ -78,7 +78,7 @@ gulp.task('watch', function () {
 // OR dynamic server
 gulp.task('browser-sync', function() {
   browserSync.init(['*.html'], {
-    proxy: 'editorial.dev'
+    proxy: 'livewires.dev'
   });
 });
 
