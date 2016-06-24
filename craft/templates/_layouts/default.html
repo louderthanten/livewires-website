@@ -17,7 +17,7 @@
     {% include '_css/critical.html' %}
     <link rel="preload" onload="this.rel='stylesheet'" href="/css/app.css" as="style" id="mainCss" />
     {% endif %}
-    {% block css %}{% include '_art-direction' %}{% endblock %}
+    {% block css %}{% cache unless craft.config.devMode or craft.request.isLivePreview %}{% include '_art-direction' %}{% endcache %}{% endblock %}
 
     {# LiveWires styles #}
     <link rel="livewire" href="/css/livewires.css" id="blank" />
