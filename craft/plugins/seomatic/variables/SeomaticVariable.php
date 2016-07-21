@@ -108,6 +108,17 @@ class SeomaticVariable
     } /* -- extractTextFromMatrix */
 
 /* --------------------------------------------------------------------------------
+    Returns an array of localized URLs for the current request
+-------------------------------------------------------------------------------- */
+
+    public function getLocalizedUrls()
+    {
+        $result = craft()->seomatic->getLocalizedUrls();
+
+        return $result;
+    } /* -- getLocalizedUrls */
+
+/* --------------------------------------------------------------------------------
     Get a fully qualified URL based on the siteUrl, if no scheme/host is present
 -------------------------------------------------------------------------------- */
 
@@ -277,7 +288,7 @@ class SeomaticVariable
     } /* -- renderWebsite */
 
 /* --------------------------------------------------------------------------------
-    Render the SEOmatic Product template
+    Render the Product JSON-LD
 -------------------------------------------------------------------------------- */
 
     function renderProduct($elementId=null, $locale=null, $isPreview=false)
@@ -301,6 +312,32 @@ class SeomaticVariable
 
         return rtrim($result);
     } /* -- renderProduct */
+
+/* --------------------------------------------------------------------------------
+    Render the Breadcrumbs JSON-LD
+-------------------------------------------------------------------------------- */
+
+    function renderBreadcrumbs($elementId=null, $locale=null, $isPreview=false)
+    {
+        if (!$locale)
+            $locale = craft()->language;
+
+        if ($elementId)
+        {
+            $element = craft()->elements->getElementById($elementId, null, $locale);
+            if ($element)
+            {
+                $entryMeta = craft()->seomatic->getMetaFromElement($element);
+                if ($entryMeta)
+                    craft()->seomatic->setEntryMeta($entryMeta, $element->url);
+            }
+        }
+
+        $metaVars = craft()->seomatic->getGlobals('', $locale);
+        $result = craft()->seomatic->renderBreadcrumbs($metaVars, $locale, $isPreview);
+
+        return rtrim($result);
+    } /* -- renderBreadcrumbs */
 
 /* --------------------------------------------------------------------------------
     Render the SEOmatic Place template
@@ -327,6 +364,32 @@ class SeomaticVariable
 
         return rtrim($result);
     } /* -- renderPlace */
+
+/* --------------------------------------------------------------------------------
+    Render the Google Tag Manager <script> tags
+-------------------------------------------------------------------------------- */
+
+    function renderGoogleTagManager($elementId=null, $locale=null, $isPreview=false)
+    {
+        if (!$locale)
+            $locale = craft()->language;
+
+        if ($elementId)
+        {
+            $element = craft()->elements->getElementById($elementId, null, $locale);
+            if ($element)
+            {
+                $entryMeta = craft()->seomatic->getMetaFromElement($element);
+                if ($entryMeta)
+                    craft()->seomatic->setEntryMeta($entryMeta, $element->url);
+            }
+        }
+
+        $metaVars = craft()->seomatic->getGlobals('', $locale);
+        $result = craft()->seomatic->renderGoogleTagManager($metaVars, $locale, $isPreview);
+
+        return rtrim($result);
+    } /* -- renderGoogleTagManager */
 
 /* --------------------------------------------------------------------------------
     Render the Google Analytics <script> tags
@@ -453,18 +516,22 @@ class SeomaticVariable
     Get the identity record
 -------------------------------------------------------------------------------- */
 
-    public function getIdentity()
+    public function getIdentity($locale=null)
     {
-        return craft()->seomatic->getIdentity();
+        if (!$locale)
+            $locale = craft()->language;
+        return craft()->seomatic->getIdentity($locale);
     } /* -- getIdentity */
 
 /* --------------------------------------------------------------------------------
     Get the social record
 -------------------------------------------------------------------------------- */
 
-    public function getSocial()
+    public function getSocial($locale=null)
     {
-        return craft()->seomatic->getSocial();
+        if (!$locale)
+            $locale = craft()->language;
+        return craft()->seomatic->getSocial($locale);
     } /* -- getSocial */
 
 /* --------------------------------------------------------------------------------

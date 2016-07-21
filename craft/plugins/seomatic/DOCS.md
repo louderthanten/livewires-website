@@ -72,10 +72,12 @@ You can also dynamically change any of these SEO Meta fields in your Twig templa
 * **Site SEO Name Separator** - The character that should be used to separate the Site SEO Name and Title in the `<title>` tag
 * **Site SEO Description** - This should be between 70 and 160 characters (spaces included). Meta descriptions allow you to influence how your web pages are described and displayed in search results. Ensure that all of your web pages have a unique meta description that is explicit and contains your most important keywords.
 * **Site SEO Keywords** - Google ignores this tag; though other search engines do look at it. Utilize it carefully, as improper or spammy use most likely will hurt you, or even have your site marked as spam. Avoid overstuffing the keywords and do not include keywords that are not related to the specific page you place them on.
-* **Site SEO Image** - This is the image that will be used for display as the global website brand, as well as on Twitter Cards and Facebook OpenGraph that link to the website. It should be an image that displays well when cropped to a square format (for Twitter)
-* **Site Owner** - The type of entity that owns this website.
+* **Site SEO Image** - This is the image that will be used for display as the global website brand, as well as on Twitter Cards and Facebook OpenGraph that link to the website. The image must be in JPG, PNG, or GIF format.
+* **SEO Image Transform** - The image transform to apply to the Site SEO Image.
 * **Site Twitter Card Type** - With Twitter Cards, you can attach rich photos and information to Tweets that drive traffic to your website. Users who Tweet links to your content will have a “Card” added to the Tweet that’s visible to all of their followers.
+* **Twitter Image Transform** - The image transform to apply to the Twitter SEO Image. Twitter recommends: 120 x 120 pixels minimum size, 1:1 aspect ratio, 1mb max size for Summary Card images, and 280x150 pixels minimum size, 1.86:1 aspect ratio, 1mb max size for Summary Card with Large Image images.
 * **Site Facebook Open Graph Type** - Adding Open Graph tags to your website influences the performance of your links on social media by allowing you to control what appears when a user posts a link to your content on Facebook.
+* **Facebook Image Transform** - The image transform to apply to the Facebook SEO Image. Facebook recommends: 1200 x 630 pixels minimum size, 1.9:1 aspect ratio, 8mb max size.
 * **Site Robots** - The [robots meta tag](https://developers.google.com/webmasters/control-crawl-index/docs/robots_meta_tag?hl=en) lets you utilize a granular, page-specific approach to controlling how an individual page should be indexed and served to users in search results.  Setting it to a blank value means 'no change'.
 
 #### SiteLinks Search Box
@@ -116,6 +118,7 @@ Leave any fields blank that aren't applicable or which you do not want as part o
 #### Site Ownership
 * **Google Site Verification** - For the `<meta name='google-site-verification'>` tag. Only enter the code in the `content=''`, not the entire tag. [Here's how to get it.](https://www.google.com/webmasters/verification/).
 * **Bing Site Verification** - For the `<meta name='msvalidate.01'>` tag. Only enter the code in the `content=''`, not the entire tag. [Here's how to get it.](https://www.bing.com/webmaster/help/how-to-verify-ownership-of-your-site-afcfefc6).
+* **Google Tag Manager ID** - If you enter your Google Tag Manager ID here, the Google Tag Manager script tags will be included in your `<head>` (the script is not included during Live Preview). Only enter the ID, e.g.: `GTM-XXXXXX`, not the entire script code. [Here's how to get it.](https://support.google.com/tagmanager/answer/6102821?hl=en)
 * **Google Analytics Tracking ID** - If you enter your Google Analytics Tracking ID here, the Google Analytics script tags will be included in your `<head>` (the script is not included if `devMode` is on or during Live Preview). Only enter the ID, e.g.: `UA-XXXXXX-XX`, not the entire script code. [Here's how to get it.](https://support.google.com/analytics/answer/1032385?hl=en)
 * **Automatically send Google Analytics PageView** - Controls whether the Google Analytics script automatically sends a PageView to Google Analytics when your pages are loaded
 * **Google Analytics Plugins** - Select which Google Analytics plugins to enable. [Learn More](https://developers.google.com/analytics/devguides/collection/analyticsjs/)
@@ -123,13 +126,25 @@ Leave any fields blank that aren't applicable or which you do not want as part o
 
 More fields will also appear depending on the selected **Site Owner Entity Type**.  For instance, any `LocalBusiness` sub-type will receive a field for **Opening Hours**, so that the hours that the business is open will be rendered in the Identity and Place JSON-LD microdata.
 
+##### Google Tag Manager
+
+Note that the Google Tag Manager implementation supports the `dataLayer` property.  You can set it like any other Twig array:
+
+	{% set dataLayer = {
+	      'pageCategory': entry.category,
+	      'visitorType': 'high-value'
+	} %}
+
+You can set the `dataLayer` Twig variable either in your templates that extend your `layout.twig` or in your `layout.twig` itself.  The usual rules on Twig variable scoping apply, you just need to set the `dataLayer` array before the `{% hook seomaticRender %}` is called.  [Learn More](https://developers.google.com/tag-manager/devguide)
+
+There is also a `gtmDataLayerVariableName` variable in `config.php` which allows you to control the name of the Javascript `dataLayer` variable.
 
 #### General Info
 * **Entity Name** - The name of the entity that owns the website
 * **Alternate Entity Name** - An alternate or nickname for the entity that owns the website
 * **Entity Description** - A description of the entity that owns the website
 * **Entity URL** - A URL for the entity that owns the website
-* **Entity Brand** - An image or logo that represents the entity that owns the website
+* **Entity Brand** - An image or logo that represents the entity that owns the website.  The image must be in JPG, PNG, or GIF format.
 * **Entity Telephone** - The primary contact telephone number for the entity that owns the website
 * **Entity Email** - The primary contact email address for the entity that owns the website
 
@@ -212,7 +227,7 @@ Leave any fields blank that aren't applicable or which you do not want as part o
 * **Alternate Entity Name** - An alternate or nickname for the entity that created the website
 * **Entity Description** - A description of the entity that created the website
 * **Entity URL** - A URL for the entity that created the website
-* **Entity Brand** - An image or logo that represents the entity that created the website
+* **Entity Brand** - An image or logo that represents the entity that created the website.  The image must be in JPG, PNG, or GIF format.
 * **Entity Telephone** - The primary contact telephone number for the entity that created the website
 * **Entity Email** - The primary contact email address for the entity that created the website
 
@@ -267,10 +282,15 @@ You can also dynamically change any of these SEO Meta fields in your Twig templa
 * **SEO Title** - This should be between 10 and 70 characters (spaces included). Make sure your title tag is explicit and contains your most important keywords. Be sure that each page has a unique title tag.
 * **SEO Description** - This should be between 70 and 160 characters (spaces included). Meta descriptions allow you to influence how your web pages are described and displayed in search results. Ensure that all of your web pages have a unique meta description that is explicit and contains your most important keywords.
 * **SEO Keywords** - Google ignores this tag; though other search engines do look at it. Utilize it carefully, as improper or spammy use most likely will hurt you, or even have your site marked as spam. Avoid overstuffing the keywords and do not include keywords that are not related to the specific page you place them on.
-* **SEO Image** - This is the image that will be used for display as the webpage brand for this template, as well as on Twitter Cards and Facebook OpenGraph that link to this page. It should be an image that displays well when cropped to a square format (for Twitter)
+* **SEO Image** - This is the image that will be used for display as the webpage brand for this template, as well as on Twitter Cards and Facebook OpenGraph that link to this page. The image must be in JPG, PNG, or GIF format.
+* **SEO Image Transform** - The image transform to apply to the Site SEO Image.
 * **Twitter Card Type** - With Twitter Cards, you can attach rich photos and information to Tweets that drive traffic to your website. Users who Tweet links to your content will have a “Card” added to the Tweet that’s visible to all of their followers.
+* **Twitter Image Transform** - The image transform to apply to the Twitter SEO Image. Twitter recommends: 120 x 120 pixels minimum size, 1:1 aspect ratio, 1mb max size for Summary Card images, and 280x150 pixels minimum size, 1.86:1 aspect ratio, 1mb max size for Summary Card with Large Image images.
 * **Facebook Open Graph Type** - Adding Open Graph tags to your website influences the performance of your links on social media by allowing you to control what appears when a user posts a link to your content on Facebook.
+* **Facebook Image Transform** - The image transform to apply to the Facebook SEO Image. Facebook recommends: 1200 x 630 pixels minimum size, 1.9:1 aspect ratio, 8mb max size.
 * **Robots** - The [robots meta tag](https://developers.google.com/webmasters/control-crawl-index/docs/robots_meta_tag?hl=en) lets you utilize a granular, page-specific approach to controlling how an individual page should be indexed and served to users in search results.  Setting it to a blank value means 'no change'.
+
+The **SEO Title**, **SEO Description**, and **SEO Keywords** fields can include tags that output entry properties, such as `{title}` or `{myCustomField}` in them.
 
 You can use any Craft `environmentVariables` in these fields in addition to static text, e.g.:
 
@@ -293,9 +313,12 @@ You can also dynamically change any of these SEO Meta fields in your Twig templa
 * **SEO Title** - This should be between 10 and 70 characters (spaces included). Make sure your title tag is explicit and contains your most important keywords. Be sure that each page has a unique title tag.
 * **SEO Description** - This should be between 70 and 160 characters (spaces included). Meta descriptions allow you to influence how your web pages are described and displayed in search results. Ensure that all of your web pages have a unique meta description that is explicit and contains your most important keywords.
 * **SEO Keywords** - Google ignores this tag; though other search engines do look at it. Utilize it carefully, as improper or spammy use most likely will hurt you, or even have your site marked as spam. Avoid overstuffing the keywords and do not include keywords that are not related to the specific page you place them on.
-* **SEO Image** - This is the image that will be used for display as the webpage brand for this template, as well as on Twitter Cards and Facebook OpenGraph that link to this page. It should be an image that displays well when cropped to a square format (for Twitter)
+* **SEO Image** - This is the image that will be used for display as the webpage brand for this template, as well as on Twitter Cards and Facebook OpenGraph that link to this page. The image must be in JPG, PNG, or GIF format.
+* **SEO Image Transform** - The image transform to apply to the Site SEO Image.
 * **Twitter Card Type** - With Twitter Cards, you can attach rich photos and information to Tweets that drive traffic to your website. Users who Tweet links to your content will have a “Card” added to the Tweet that’s visible to all of their followers.
+* **Twitter Image Transform** - The image transform to apply to the Twitter SEO Image. Twitter recommends: 120 x 120 pixels minimum size, 1:1 aspect ratio, 1mb max size for Summary Card images, and 280x150 pixels minimum size, 1.86:1 aspect ratio, 1mb max size for Summary Card with Large Image images.
 * **Facebook Open Graph Type** - Adding Open Graph tags to your website influences the performance of your links on social media by allowing you to control what appears when a user posts a link to your content on Facebook.
+* **Facebook Image Transform** - The image transform to apply to the Facebook SEO Image. Facebook recommends: 1200 x 630 pixels minimum size, 1.9:1 aspect ratio, 8mb max size.
 * **Robots** - The [robots meta tag](https://developers.google.com/webmasters/control-crawl-index/docs/robots_meta_tag?hl=en) lets you utilize a granular, page-specific approach to controlling how an individual page should be indexed and served to users in search results.  Setting it to a blank value means 'no change'.
 
 The **SEO Title**, **SEO Description**, and **SEO Keywords** fields can include tags that output entry properties, such as `{title}` or `{myCustomField}` in them.
@@ -321,6 +344,8 @@ During Live Preview, a small SEOmatic icon is displayed in the lower-left corner
 You can enter **Focus Keyworks**, comma separated, for an additional analysis of how well optimized your page is for those specific SEO keywords.
 
 You can disable this feature by setting `displaySeoMetrics` to `false` in the `config.php`, should you wish to not have it displayed.
+
+SEOmetrics during Live Preview only works if System Status is set to "on".
 
 ## Craft Commerce Product Microdata
 
@@ -357,6 +382,32 @@ Or if you want to set just one variable in the array, you can use the Twig funct
     {% set seomaticProduct = seomaticProduct | merge({'brand': entry.brandInfo }) %}
 
 You can change these `seomaticProduct` variables in your templates that `extends` your main `layout.twig` template, and due to the Twig rendering order, when `{% hook 'seomaticRender' %}` is called, they'll be populated in your rendered SEO Meta tags.
+
+See the section **Dynamic Twig SEO Meta** for more information on how to manipulate SEOmatic variables via Twig.
+
+SEOmatic also automatically strips HTML/PHP tags from the variables, and translates HTML entities to ensure that they are properly encoded.
+
+## Breadcrumbs Microdata
+
+![Screenshot](resources/screenshots/seomatic06.png)
+
+SEOmatic will automatically generate [Breadcrumbs](https://developers.google.com/search/docs/data-types/breadcrumbs) JSON-LD microdata that is used by Google to display breadcrumbs on the SERP rich cards.
+
+By default, SEOmatic will generate breadcrumbs automatically for `Home` (the name is configurable via `breadcrumbsHomeName` in `config.json`), and for the current `entry`, `product`, or `category` the template is displaying.
+
+If you want to do your own custom breadcrumbs, you can set them yourself in the `breadcrumbs` array in the `seomaticMeta` variable like this:
+
+	{% set myBreadcrumbs = {
+		"Home": "http://nystudio107.dev/",
+		"Books": "http://nystudio107.dev/books/",
+		"Candide": "http://nystudio107.dev/books/candide",
+	} %}
+
+	{% set seomaticMeta = seomaticMeta | merge({'breadcrumbs': myBreadcrumbs }) %}
+
+Since this is just a Twig array, you can alter it as you see fit, and whatever changes you make will be reflected in the JSON-LD that SEOmatic renders via the `{% hook 'seomaticRender' %}`  Because of the way that Twig handles arrays, you **must** include every field in the array when doing a `set` or `merge`, otherwise the fields you exclude will not exist.
+
+You can change these `breadcrumbs` variables in your templates that `extends` your main `layout.twig` template, and due to the Twig rendering order, when `{% hook 'seomaticRender' %}` is called, they'll be populated in your rendered SEO Meta tags.
 
 See the section **Dynamic Twig SEO Meta** for more information on how to manipulate SEOmatic variables via Twig.
 
@@ -877,6 +928,27 @@ All three of these methods accomplish the same thing:
     &#105;&#110;&#102;&#111;&#64;&#110;&#121;&#115;&#116;&#117;&#100;&#105;&#111;&#49;&#48;&#55;&#46;&#99;&#111;&#109;
 
 Google can still properly decode email addresses that are ordinal-encoded, it's still readable by humans when displayed, but it prevents some bots from recognizing it as an email address.
+
+### getLocalizedUrls()
+
+Returns an array of localized URLs for the current page request.  This handles elements with localized slugs, etc.  This function returns the unique URLs for each language for the current page request, not just the localized site URLs.
+
+Both of these methods accomplish the same thing:
+
+    {# Get an array of localized URLs for the current request using the 'getLocalizedUrls' function #}
+    {% set myLocalizedUrls = getLocalizedUrls() }}
+    
+    {# Get an array of localized URLs for the current request using the 'getLocalizedUrls' variable #}
+    {% set myLocalizedUrls = craft.seomatic.getLocalizedUrls() %}
+
+You'll be returned an array that looks like this:
+
+    {
+    'en': 'http://nystudio107.dev/',
+    'el_gr': 'http://nystudio107.dev/gr/'
+    }
+
+With a key/value pair for each language your site is localized in, in the order you have them set in the AdminCP.  This makes it very easy to create a "language switcher" menu.
 
 ### getFullyQualifiedUrl()
 

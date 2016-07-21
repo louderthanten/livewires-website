@@ -47,11 +47,65 @@ Some things to do, and ideas for potential features:
 * [bug] Get the Template Metas implemented with full `locale` support, so the settings can all be per-locale based
 * [bug] Enforce *required fields on the various settings pages in the Admin CP by doing proper validation
 * [bug] The `foundingDate` fields probably should be dateTimeField types on the Settings pages
-* [feature] Add support for `og:image:type`, `og:image:width`, and `og:image:height`
-* [feature] Change the preview to a live preview when editing things in SEOmatic
 * [feature] Provide SiteMap functionality.  Yes, it's SEO-related, but seems like it might be better to keep SEOmatic focused (?)
 
 ## Changelog
+
+### 1.1.25 -- 2016.07.19
+
+* [Fixed] Fixed an issue with SEO images not rendering properly via the FieldType
+* [Fixed] Fixed a typo that would cause Template Metas to not save properly
+* [Improved] Added a fallback if `iconv` is not installed for UTF-8 conversion
+* [Improved] Explicitly state that the SEO Image must be in JPG, PNG, or GIF format
+* [Improved] Updated the README.md
+
+### 1.1.24 -- 2016.07.18
+
+* [Added] You can now specify image transforms for your SEO Image, Twitter Image, and Facebook Image for Site Meta, Template Meta, and Entry Metas
+* [Added] Added og:image:type, og:image:width, and og:image:height to the OpenGraph meta
+* [Added] Added support for Breadcrumbs JSON-LD microdata
+* [Improved] the Twig array keys are now quoted in the display preview
+* [Improved] Trimmed the fat on some of the settings storage maxLength's
+* [Added] Added the ability to control the name of the GTM dataLayer variable
+* [Fixed] Added renderGoogleTagManagerScript in config.php
+* [Improved] The GTM script tags are now rendered when `devMode` is on, for debugging GTM
+* [Improved] Updated the README.md
+
+### 1.1.23 -- 2016.07.08
+
+* [Added] Added support for Google Tag Manager (including `dataLayer`)
+* [Fixed] Keywords in the SEOmatic Meta FieldType are now tokenized again
+* [Fixed] Fixed Javascript error in the FieldType Source popup menu
+* [Fixed] Fix Undefined index in getLocalizedUrls
+* [Improved] Change seoKeywords -> seoKeywordsUnparsed
+* [Added] Add accessors for seoTitleUnparsed, seoDescriptionUnparsed, and seoKeywordsUnparsed
+* [Improved] meta keywords and meta description tags only render if they are non-empty
+* [Improved] Updated the README.md
+
+### 1.1.22 -- 2016.06.27
+
+* [Fixed] Fixed the variable accessor rountines getSocial() and getIdentity()
+* [Fixed] Fixed an issue with the 'custom' data not displaying in SEOmatic Meta FieldTypes
+* [Improved] Updated the README.md
+
+### 1.1.21 -- 2016.06.25
+
+* [Improved] Contents of SEOmatic Meta FieldTypes are now parsed when they are saved, rather than at runtime, which should be faster, and also makes the contents of the fields always accessible.  Please re-save your Sections that use SEOmatic FieldTypes as per: [https://github.com/nystudio107/seomatic/wiki/05.-SEO-Entry-Meta](https://github.com/nystudio107/seomatic/wiki/05.-SEO-Entry-Meta)
+* [Added] The SEO Title, SEO Description, and SEO Keywords fields in Template Metas can now include tags that output entry properties, such as `{title}` or `{myCustomField}` in them
+* [Added] Added a `getLocalizedUrls` Twig filter/function that returns an array of localized URLs for the current request
+* [Improved] The SEOmetrics window will now remember its open/closed state while in Live Preview
+* [Improved] Some minor tweaks to the SEOmetrics CSS
+* [Improved] The current locale is now included in the hreflang for localized sites
+* [Improved] The language and country code are now both included in the hreflang for localized sites
+* [Improved] The full URL to the current page is now used in the hreflang for localized sites
+* [Improved] style and script tags are now stripped out before doing any SEOmetrics on the page
+* [Added] Added approximate reading time in the Textual Analysis section of the SEOmetrics
+* [Added] You can now control the string prepended to the title tag when devMode is on via config.php
+* [Added] Added a French localization for SEOmatic, thanks to @FrancisBou
+* [Fixed] We should not properly catch exceptions when there are errors in the variables in the SEOmatic FieldType fields
+* [Fixed] Fixed a bug where SEOmetrics might not appear on certain setups that use https
+* [Fixed] Fixed Twitter cards, changed `property` to `name`
+* [Improved] Updated the README.md
 
 ### 1.1.20 -- 2016.06.06
 

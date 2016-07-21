@@ -12,6 +12,9 @@ class Seomatic_MetaFieldModel extends Seomatic_MetaModel
     protected function defineAttributes()
     {
         return array_merge(parent::defineAttributes(), array(
+            'seoTitleUnparsed'              => array(AttributeType::String, 'default' => ''),
+            'seoDescriptionUnparsed'        => array(AttributeType::String, 'default' => ''),
+            'seoKeywordsUnparsed'           => array(AttributeType::String, 'default' => ''),
             'seoTitleSource'				=> array(AttributeType::Enum, 'values' => "custom,field", 'default' => 'field'),
             'seoTitleSourceField'			=> array(AttributeType::String, 'default' => 'title'),
             'seoDescriptionSource'			=> array(AttributeType::Enum, 'values' => "custom,field", 'default' => 'custom'),
@@ -23,6 +26,36 @@ class Seomatic_MetaFieldModel extends Seomatic_MetaModel
 /* -- For Commerce products */
             'seoCommerceVariants'           => array(AttributeType::Mixed),
         ));
+    }
+
+    /**
+     * Returns the seoTitleUnparsed
+     *
+     * @return string
+     */
+    public function seoTitleUnparsed()
+    {
+        return $this->seoTitleUnparsed;
+    }
+
+    /**
+     * Returns the seoDescriptionUnparsed
+     *
+     * @return string
+     */
+    public function seoDescriptionUnparsed()
+    {
+        return $this->seoDescriptionUnparsed;
+    }
+
+    /**
+     * Returns the seoKeywordsUnparsed
+     *
+     * @return string
+     */
+    public function seoKeywordsUnparsed()
+    {
+        return $this->seoKeywordsUnparsed;
     }
 
     /**

@@ -42,10 +42,16 @@ class SeomaticController extends BaseController
             $keywordsParam = urldecode(craft()->request->getParam('keywords'));
             $keywordsKeys = explode(",", $keywordsParam);
             $keywords = array();
-            $dom = HtmlDomParser::file_get_html($url);
-            if ($dom)
+/* -- Silly work-around for what appears to be a file_get_contents bug with https -> http://stackoverflow.com/questions/10524748/why-im-getting-500-error-when-using-file-get-contents-but-works-in-a-browser */
+            $opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
+            $context = stream_context_create($opts);
+            $dom = HtmlDomParser::file_get_html($url, false, $context);            if ($dom)
             {
                 $textStatistics = new TS\TextStatistics;
+                foreach($dom->find('style') as $element)
+                    $element->outertext = '';
+                foreach($dom->find('script') as $element)
+                    $element->outertext = '';
                 $strippedDom = html_entity_decode($dom->plaintext);
                 $strippedDom = preg_replace('@[^0-9a-z\.\!]+@i', ' ', $strippedDom);
                 $htmlDom = html_entity_decode($dom->outertext);
@@ -119,6 +125,9 @@ class SeomaticController extends BaseController
 /* -- Text statistics */
 
                 $wordCount = $textStatistics->wordCount($strippedDom);
+                $readingTime = floor($wordCount / 200);
+                if ($readingTime === 0)
+                    $readingTime = 1;
                 $fleschKincaidReadingEase = $textStatistics->fleschKincaidReadingEase($strippedDom);
                 $fleschKincaidGradeLevel = $textStatistics->fleschKincaidGradeLevel($strippedDom);
                 $gunningFogScore = $textStatistics->gunningFogScore($strippedDom);
@@ -140,6 +149,7 @@ class SeomaticController extends BaseController
                     'effectiveHTags' => $effectiveHTags,
                     'textToHtmlRatio' => $textToHtmlRatio,
                     'wordCount' => $wordCount,
+                    'readingTime' => $readingTime,
                     'pageKeywords' => $pageKeywords,
                     'keywords' => $keywords,
                     'fleschKincaidReadingEase' => $fleschKincaidReadingEase,
@@ -281,6 +291,7 @@ class SeomaticController extends BaseController
 
         // Set the "Continue Editing" URL
         $variables['continueEditingUrl'] = 'seomatic/site';
+        $variables['transformsList'] = craft()->seomatic->getTransformsList();
 
         // Render the template!
         $this->renderTemplate('seomatic/site/_edit', $variables);
@@ -449,6 +460,8 @@ class SeomaticController extends BaseController
         $sources = craft()->assets->findFolders();
         $variables['assetsSourceExists'] = count($sources);
 
+        $variables['transformsList'] = craft()->seomatic->getTransformsList();
+
         // URL to create a new assets source
         $variables['newAssetsSourceUrl'] = UrlHelper::getUrl('settings/assets/sources/new');
 
@@ -534,6 +547,9 @@ class SeomaticController extends BaseController
         $model->seoTitle = craft()->request->getPost('seoTitle', $model->seoTitle);
         $model->seoDescription = craft()->request->getPost('seoDescription', $model->seoDescription);
         $model->seoKeywords = craft()->request->getPost('seoKeywords', $model->seoKeywords);
+        $model->seoImageTransform = craft()->request->getPost('seoImageTransform', $model->seoImageTransform);
+        $model->seoFacebookImageTransform = craft()->request->getPost('seoFacebookImageTransform', $model->seoFacebookImageTransform);
+        $model->seoTwitterImageTransform = craft()->request->getPost('seoTwitterImageTransform', $model->seoTwitterImageTransform);
         $model->twitterCardType = craft()->request->getPost('twitterCardType', $model->twitterCardType);
         $model->openGraphType = craft()->request->getPost('openGraphType', $model->openGraphType);
         $model->robots = craft()->request->getPost('robots', $model->robots);
@@ -611,6 +627,9 @@ class SeomaticController extends BaseController
         $record->siteSeoTitlePlacement = craft()->request->getPost('siteSeoTitlePlacement', $record->siteSeoTitlePlacement);
         $record->siteSeoDescription = craft()->request->getPost('siteSeoDescription', $record->siteSeoDescription);
         $record->siteSeoKeywords = craft()->request->getPost('siteSeoKeywords', $record->siteSeoKeywords);
+        $record->siteSeoImageTransform = craft()->request->getPost('siteSeoImageTransform', $record->siteSeoImageTransform);
+        $record->siteSeoFacebookImageTransform = craft()->request->getPost('siteSeoFacebookImageTransform', $record->siteSeoFacebookImageTransform);
+        $record->siteSeoTwitterImageTransform = craft()->request->getPost('siteSeoTwitterImageTransform', $record->siteSeoTwitterImageTransform);
         $record->siteTwitterCardType = craft()->request->getPost('siteTwitterCardType', $record->siteTwitterCardType);
         $record->siteOpenGraphType = craft()->request->getPost('siteOpenGraphType', $record->siteOpenGraphType);
         $record->siteRobots = craft()->request->getPost('siteRobots', $record->siteRobots);
@@ -666,6 +685,7 @@ class SeomaticController extends BaseController
         $record->googleSiteVerification = craft()->request->getPost('googleSiteVerification', $record->googleSiteVerification);
         $record->bingSiteVerification = craft()->request->getPost('bingSiteVerification', $record->bingSiteVerification);
         $record->googleAnalyticsUID = craft()->request->getPost('googleAnalyticsUID', $record->googleAnalyticsUID);
+        $record->googleTagManagerID = craft()->request->getPost('googleTagManagerID', $record->googleTagManagerID);
         $record->googleAnalyticsSendPageview = craft()->request->getPost('googleAnalyticsSendPageview', $record->googleAnalyticsSendPageview);
         $record->googleAnalyticsAdvertising = craft()->request->getPost('googleAnalyticsAdvertising', $record->googleAnalyticsAdvertising);
         $record->googleAnalyticsEcommerce = craft()->request->getPost('googleAnalyticsEcommerce', $record->googleAnalyticsEcommerce);
