@@ -2,7 +2,7 @@
 
 {% set fieldLabel = block.fieldLabel %}
 {% set fieldType = block.fieldType %}
-{% set width = block.width %}
+{% set width = block.fieldWidth %}
 
 {% if block.fieldName %}
 {% set fieldName = block.fieldName %}
@@ -14,6 +14,12 @@
 {% set anchorName = block.anchorName %}
 {% else %}
 {% set anchorName = fieldLabel|kebab %}
+{% endif %}
+
+{% if block.fieldWidth %}
+{% set width = block.fieldWidth %}
+{% else %}
+{% set width = null %}
 {% endif %}
 
 {% if block.value %}
@@ -34,4 +40,10 @@
 {% set required = null %}
 {% endif %}
 
-{{ input.field(fieldLabel, fieldName, anchorName, fieldType, width, value, placeholder, required) }}
+{% if block.customClass %}
+{% set class = block.customClass %}
+{% else %}
+{% set class = null %}
+{% endif %}
+
+{{ input.field(fieldLabel, fieldName, anchorName, fieldType, width, value, placeholder, required, class) }}

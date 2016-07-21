@@ -1,8 +1,8 @@
-<nav class="vertical-nav pull-right right right-align mt1">
+{% set nav = craft.entries.section('pages') %}
+<nav class="horizontal-nav pull-right">
   <ul>
-    <li><a href="/guide">Guide</a></li>
-    <li><a href="/example">Example</a></li>
-    <li><a href="http://github.com/louderthanten/livewires">Live Wires on Github</a></li>
-    <li><a href="http://github.com/louderthanten/craft-editorial-system">Live Wires Craft on Github</a></li>
+    {% for page in nav %}
+    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+    {% endfor %}
   </ul>
 </nav>

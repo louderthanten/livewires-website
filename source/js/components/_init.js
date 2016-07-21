@@ -3,6 +3,6 @@ $(document).ready(function(){
   offcanvas();
   scroll();
   tabs();
-  blank();
+  fields();
   $('.video').fitVids();
 });
